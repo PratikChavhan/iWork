@@ -3,7 +3,7 @@
 **Document**: System Requirement Specification Document
 
 **Title**: iWork - Freelancing Website
-
+---
 
 **Objective**:
 - The website aims to offer an easy-to-navigate platform that enhances the user experience both for freelancers and clients. It will focus on simplicity, ensuring that users can efficiently browse services for the projects, hire freelancers, manage their tasks. Apart from project-specific functionalities, this website will nurture a community where freelancers can collaborate, exchange knowledge, and build their professional profiles.
@@ -13,14 +13,14 @@
 - The website aims to provide a platform where freelancers can showcase their skills and experience to find suitable job opportunities.
 
 ## Overview
-
+---
 - A freelance website is a platform that connects freelancers with clients who need their services. These websites cover various job categories such as digital marketing, web development, content writing and many more.
 - Freelancers can create profiles to showcase their skills and experience.
 
 ## Functional Requirement
-
+---
 **User and Workflows :**
-- **User**
+### User
 - There will be four categories of Website users:
 	- Visitor (Unregistered User)
 	- Client
@@ -31,48 +31,30 @@
 - Freelancers are individuals who offer their services to clients on a freelance basis.
 - Admins are responsible for managing the website and ensuring that it runs smoothly.
 
-- **Workflows:**
-- Client Workflow
-	- User Registration:
-		- Clients register on the platform by providing necessary information such as name, email, and password.
-	- Profile Creation:
-		- Clients create and complete their profiles, adding details like company information, project history, and contact details.
-	- Browsing Freelancers:
-		- Clients search and browse through the profiles of freelancers based on skills, ratings, and past work.
-	- Freelancer Evaluation:
-		- Clients review freelancer profiles, past work, and bids to make an informed decision.
-	- Freelancer Selection:
-		- Clients choose a freelancer for their project and award them the job.
-	- Communication and Collaboration:
-		- Clients and freelancers communicate within the platform, discussing project details, milestones, and progress.
-	- Payment Setup:
-		- Clients set up project payments using the platform's payment system, which may include funding an escrow account.
-	- Project Completion:
-		- Clients review and approve the completed project, releasing funds to the freelancer.
+### Workflows:
+- **Client Workflow**
+	- **User Registration:** Clients register on the platform by providing necessary information such as name, email, and password.
+	- **Profile Creation:** Clients create and complete their profiles, adding details like company information, project history, and contact details.
+	- **Browsing Freelancers:** Clients search and browse through the profiles of freelancers based on skills, ratings, and past work.
+	- **Freelancer Evaluation:** Clients review freelancer profiles, past work, and bids to make an informed decision.
+	- **Freelancer Selection:** Clients choose a freelancer for their project and award them the job.
+	- **Communication and Collaboration:** Clients and freelancers communicate within the platform, discussing project details, milestones, and progress.
+	- **Payment Setup:** Clients set up project payments using the platform's payment system, which may include funding an escrow account.
+	- **Project Completion:** Clients review and approve the completed project, releasing funds to the freelancer.
 
-- Freelancer Workflow
-	- User Registration:
-		- Freelancers register on the platform by providing necessary information such as name, email, and password.
-	- Profile Creation:
-		- Freelancers complete their profiles, adding details like skills, experience, portfolio, and hourly rates.
-	- Collaboration:
-		- Frelancer can collaborate/match with fellow freelancer as team and add post in catlog.
-	- Catalog: 
-		- Freelancer will post all his skills and hourly rates so that it can be visited by clients.
-	- Client Interaction:
-		- Freelancers engage with clients through messages or other communication tools to discuss project details.
-	- Project Commencement:
-		- Once project awarded, freelancers begin working on the project, updating clients on progress.
-	- Milestone Completion:
-		- Freelancers may submit completed project milestones for client review and approval.
-	- Payment Release:
-		- Upon project completion and client approval, funds are released from escrow to the freelancer.
-	- Client Feedback:
-		- Freelancers receive feedback and ratings from clients, contributing to their overall profile reputation.
+- **Freelancer Workflow**
+	- **User Registration:** Freelancers register on the platform by providing necessary information such as name, email, and password.
+	- **Profile Creation:** Freelancers complete their profiles, adding details like skills, experience, portfolio, and hourly rates.
+	- **Collaboration:** Freelancer can collaborate/match with fellow freelancer as team and add post in catlog.
+	- **Catalog:**  Freelancer will post all his skills and hourly rates so that it can be visited by clients.
+	- **Client Interaction:** Freelancers engage with clients through messages or other communication tools to discuss project details.
+	- **Project Commencement:** Once project awarded, freelancers begin working on the project, updating clients on progress.
+	- **Milestone Completion:** Freelancers may submit completed project milestones for client review and approval.
+	- **Payment Release:** Upon project completion and client approval, funds are released from escrow to the freelancer.
+	- **Client Feedback:** Freelancers receive feedback and ratings from clients, contributing to their overall profile reputation.
 
-- Admin Workflow	
-	- Login to Admin Dashboard:
-		- The admin logs in to the admin dashboard using secure credentials.
+- **Admin Workflow**	
+	- **Admin Dashboard:** The admin logs in to the admin dashboard using secure credentials.
 	- User Management:
 		- Admins have access to user management tools to review and manage user accounts, including verifying new registrations and addressing any account-related issues.
 	- Catalog Oversight:

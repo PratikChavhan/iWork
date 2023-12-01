@@ -155,3 +155,22 @@
 
 - The website should be highly available with minimal downtime and should be able to handle high traffic volumes without crashing.
 - The sites response time should be quick as possible as and it should be able to load balance the server.
+
+###  Performance
+
+- The website should have faster page load time, quick search results, and efficient navigation to provide a smooth user experience.
+
+### Usability
+
+- The website should be easy to use and navigate, with clear instructions and intuitive design elements.
+
+### Scalability
+
+- The website should be able to accommodate a growing number of users, projects, and transactions without compromising performance or reliability.
+
+### Maintainability
+The website should be easy to maintain and update, with clear documentation and a modular architecture that allows for easy customization and integration of new features.
+
+### Compatibility
+
+- The website should be compatible with different browsers, devices, and operating systems to ensure accessibility for all users.

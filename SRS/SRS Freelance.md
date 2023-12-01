@@ -143,3 +143,15 @@
   - Action: The system will verify the user information with the database.
   - Output: The system will redirect the user to the appropriate menu page.
 
+
+## Non-functional Requirement
+
+### Security
+
+- The website should have strong security measures to protect user data and prevent unauthorized access.
+- 
+
+###Reliability
+
+- The website should be highly available with minimal downtime and should be able to handle high traffic volumes without crashing.
+- The sites response time should be quick as possible as and it should be able to load balance the server.

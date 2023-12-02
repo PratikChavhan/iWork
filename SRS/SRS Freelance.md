@@ -101,14 +101,14 @@
 
 ### Posting Card
 
-**Category Selection:** Choose the category that best fits your skills and expertise. For example, if you're a graphic designer, select "Design & Creative" as your category.
-**Adding Skills:** List down all the skills that you possess related to the category you selected. Be specific and detailed about each skill.
-**Hourly Rate:** Decide on an hourly rate that is fair and competitive for your skills and experience level.
-**Adding Headline:** Come up with a catchy and compelling headline that accurately reflects your services and highlights your unique selling proposition.
-**Adding Description:** Write a detailed description of your services, experience, and qualifications. Make sure to use keywords related to your skills to increase visibility in search results.
-**Adding Profile Picture:** Upload a professional-looking profile picture that represents you and your brand.
-**Preview and publish:** Preview your card to make sure everything looks good, and then hit the "Publish" button to make it live on the platform for potential clients to see.
-**Promote your card:** Share your card on social media, your website, or other platforms to attract more clients and increase visibility.
+- **Category Selection:** Choose the category that best fits your skills and expertise. For example, if you're a graphic designer, select "Design & Creative" as your category.
+- **Adding Skills:** List down all the skills that you possess related to the category you selected. Be specific and detailed about each skill.
+- **Hourly Rate:** Decide on an hourly rate that is fair and competitive for your skills and experience level.
+- **Adding Headline:** Come up with a catchy and compelling headline that accurately reflects your services and highlights your unique selling proposition.
+- **Adding Description:** Write a detailed description of your services, experience, and qualifications. Make sure to use keywords related to your skills to increase visibility in search results.
+- **Adding Profile Picture:** Upload a professional-looking profile picture that represents you and your brand.
+- **Preview and publish:** Preview your card to make sure everything looks good, and then hit the "Publish" button to make it live on the platform for potential clients to see.
+- **Promote your card:** Share your card on social media, your website, or other platforms to attract more clients and increase visibility.
 
 
 ### Project Assignment and Communication

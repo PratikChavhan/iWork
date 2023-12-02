@@ -1,6 +1,6 @@
 # iWork - Freelancing Website
 
-**Document**: System Requirement Specification Document
+### Document: System Requirement Specification Document
 
 **Title**: iWork - Freelancing Website
 ---
@@ -87,7 +87,9 @@
 	- **Social Media Integration:** Visitors may find links to the platform's social media profiles, allowing them to connect and stay updated on platform activities.
 	- **Exit or Registration:** Visitors can choose to exit the website or proceed with registration based on their level of interest.
 
+
 ### User Registration and Login 
+
 - The system will allow to register a new Freelancer.
 - The system will allow existing Freelancer or Client to log-on their account.
 - The system will provide general help information.
@@ -99,15 +101,14 @@
 
 ### Posting Card
 
-- **Category Selection:** Choose the category that best fits your skills and expertise. For example, if you're a graphic designer, select "Design & Creative" as your category.
-- **Adding Skills:**  List down all the skills that you possess related to the category you selected. Be specific and detailed about each skill.
-- **Hourly Rate:** Decide on an hourly rate that is fair and competitive for your skills and experience level.
-- **Adding Headline:** Come up with a catchy and compelling headline that accurately reflects your services and highlights your unique selling proposition.
-- **Adding Description:** Write a detailed description of your services, experience, and qualifications. Make sure to use keywords related to your skills to increase visibility in search results.
-
-- **Adding Profile Picture:** Upload a professional-looking profile picture that represents you and your brand.
-- **Preview and publish:** Preview your card to make sure everything looks good, and then hit the "Publish" button to make it live on the platform for potential clients to see.
-- **Promote your card:** Share your card on social media, your website, or other platforms to attract more clients and increase visibility.
+**Category Selection:** Choose the category that best fits your skills and expertise. For example, if you're a graphic designer, select "Design & Creative" as your category.
+**Adding Skills:** List down all the skills that you possess related to the category you selected. Be specific and detailed about each skill.
+**Hourly Rate:** Decide on an hourly rate that is fair and competitive for your skills and experience level.
+**Adding Headline:** Come up with a catchy and compelling headline that accurately reflects your services and highlights your unique selling proposition.
+**Adding Description:** Write a detailed description of your services, experience, and qualifications. Make sure to use keywords related to your skills to increase visibility in search results.
+**Adding Profile Picture:** Upload a professional-looking profile picture that represents you and your brand.
+**Preview and publish:** Preview your card to make sure everything looks good, and then hit the "Publish" button to make it live on the platform for potential clients to see.
+**Promote your card:** Share your card on social media, your website, or other platforms to attract more clients and increase visibility.
 
 
 ### Project Assignment and Communication
@@ -124,6 +125,7 @@
 
 
 ### Payment System
+
 - **Funding Escrow Account:** Navigate on the project page, click on the "Escrow" tab. To fund the escrow account, click on the "Fund Escrow" button. This will take client to a page where he can enter the amount to fund using payment method (credit card, PayPal, or bank transfer). Once information is entered, click on the "Submit" button to complete the transaction.
 - **Confirm funding:** After successful submission of funding request, client will receive a confirmation email from the system. This email will confirm that the funding request has been received and it's being processed.
 - **Work Initialization:** Once funding request has been confirmed, the freelancer can begin work on the project. The funds will be held in escrow until the project is complete and client is satisfied with the work.
@@ -132,31 +134,37 @@
 
 
 ## Non-functional Requirement
-
+---
 ### Security
 
 - The website should have strong security measures to protect user data and prevent unauthorized access.
-- 
+
 
 ### Reliability
 
 - The website should be highly available with minimal downtime and should be able to handle high traffic volumes without crashing.
 - The sites response time should be quick as possible as and it should be able to load balance the server.
 
+
 ###  Performance
 
 - The website should have faster page load time, quick search results, and efficient navigation to provide a smooth user experience.
+
 
 ### Usability
 
 - The website should be easy to use and navigate, with clear instructions and intuitive design elements.
 
+
 ### Scalability
 
 - The website should be able to accommodate a growing number of users, projects, and transactions without compromising performance or reliability.
 
+
 ### Maintainability
-The website should be easy to maintain and update, with clear documentation and a modular architecture that allows for easy customization and integration of new features.
+
+- The website should be easy to maintain and update, with clear documentation and a modular architecture that allows for easy customization and integration of new features.
+
 
 ### Compatibility
 

@@ -21,6 +21,9 @@ header {
     align-items: center;
 }
 
+#header {
+    margin-left: 15px;
+}
 .logo h1 {
     font-size: 1.5em;
 }

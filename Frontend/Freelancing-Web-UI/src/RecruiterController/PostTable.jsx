@@ -56,9 +56,11 @@ function PostTable() {
   };
 
   return (
-    <Container style={{ marginTop: "100px", padding: "10px" }}>
+    <Container style={{ marginTop: "10px", padding: "10px" }}>
+      <h1><b>Posts</b></h1>
+      <br />
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand style={{ padding: "10px" }}>Post Table</Navbar.Brand>
+        <Navbar.Brand style={{}}></Navbar.Brand>
         <Navbar.Collapse
           style={{ padding: "10px" }}
           className="justify-content-between"
@@ -71,15 +73,15 @@ function PostTable() {
           </Button>
         </Navbar.Collapse>
       </Navbar>
-      <Row className="mt-3">
+      <Row className="mt-0">
         <Col>
-          <Table striped bordered hover variant="dark" className="bordered">
+          <Table variant="bordered" className="table">
             <thead>
               <tr>
-                <th>#</th>
+                <th>Id</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>status</th>
+                {/* <th>status</th> */}
                 <th>Budget</th>
                 <th>Action</th>
               </tr>
@@ -90,20 +92,22 @@ function PostTable() {
                   <td>{item.id}</td>
                   <td>{item.title}</td>
                   <td>{item.description}</td>
-                  <td>{item.status ? "INCOMPLETE" : "COMPLETED"}</td>
+                  {/* <td>{item.status ? "INCOMPLETE" : "COMPLETED"}</td> */}
                   <td>{item.budget}</td>
                   <td
                     const
                     style={{
                       maxHeight: "100%",
-                      gap: "5px",
+                      gap: "20px",
+                      height: 'auto',
                       textAlign: "center",
                       display: "flex",
                       flexDirection: "column",
                       alignContent: "space-around",
-                      flexWrap: "nowrap",
+                      flexWrap: "wrap",
                       justifyContent: "space-between",
                       alignItems: "stretch",
+                      background: 'white'
                     }}
                   >
                     <Link
@@ -114,12 +118,12 @@ function PostTable() {
                     >
                       Edit
                     </Link>
-                    <button
+                    {/* <button
                       className="btn btn-warning"
                       onClick={() => handleFinish(item)}
                     >
                       Mark as Finished
-                    </button>
+                    </button> */}
                     <button
                       className="btn btn-danger"
                       onClick={() => handleDelete(item)}

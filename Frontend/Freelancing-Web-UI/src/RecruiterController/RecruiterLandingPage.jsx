@@ -21,24 +21,25 @@ const RecruiterLandingPage = () => {
 
   return (
     <Container>
-      <Typography variant="h2" gutterBottom>
-        Recruiter Landing Page
+      <Typography variant="h2" gutterBottom style={{ fontWeight: 'bold', textDecoration: 'underline' }}>
+        Welcome Recruiter
       </Typography>
 
       <div style={{ marginBottom: "20px" }}>
         <Button
           variant="contained"
+          className="btn btn-primary"
           onClick={() => navigate("/add-work")}
-          style={{ marginRight: "10px", backgroundColor: "#000000" }}
+          style={{ marginRight: "10px" }}
         >
-          Add Post
+          Add Work
         </Button>
         <Button
-          style={{ marginRight: "10px", backgroundColor: "#000000" }}
+          style={{ marginRight: "10px", backgroundColor: "rgb(60 60 60)" }}
           variant="contained"
           onClick={() => navigate("/my-posts")}
         >
-          See Past Self Posts
+          Self Posts
         </Button>
       </div>
 

@@ -92,6 +92,7 @@ public class PostController {
 
 	@GetMapping("/posts/{id}")
 	public ResponseEntity<UserModel> getMethodName(@PathVariable("id") Integer id) {
+		System.out.println("Hi there");
 		return ResponseEntity.ok(postservice.getUserByPostId(id));
 
 	}

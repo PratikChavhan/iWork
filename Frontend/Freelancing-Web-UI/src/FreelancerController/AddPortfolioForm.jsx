@@ -193,6 +193,7 @@ const AddPortfolioForm = ({ handleButtonClick }) => {
           </button>
         </div>
       </form>
+      <br /><br /><br />
     </div>
   );
 };

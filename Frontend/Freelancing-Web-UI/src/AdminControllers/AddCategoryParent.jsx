@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import AddCategoryForm from './AddCategoryForm';
-import ViewAllCategory from './ViewAllCategory'; 
+import ViewAllCategory from './ViewAllCategory';
 
 const AddCategoryParent = () => {
   const [showForm, setShowForm] = useState(true);
 
   const handleSubmit = (formData) => {
-    
-    setShowForm(false); 
+
+    setShowForm(false);
   };
 
   return (

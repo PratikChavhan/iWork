@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
 import "./freelancerCards.css";
 import axios from "axios";
@@ -7,9 +8,10 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import defaultUser from "../assests/dummyUser.png";
 
+
 const ShinyTag = ({ skill }) => {
   return (
-    <div className="shiny-tag">
+    <div className="shiny-tag" style={{ backgroundColor: '#000000' }}>
       <span>{skill}</span>
     </div>
   );
@@ -25,6 +27,8 @@ const FreelancerCard = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [contactDetails, setContactDetails] = useState(null);
+  const [showMore, setShowMore] = useState(false); // Define showMore state variable
+
 
   const fetchContactDetails = (id) => {
     axios
@@ -55,15 +59,26 @@ const FreelancerCard = ({
         onError={handleImageError}
       />
       <div className="card-content">
-        <h2 className="card-title">{title}</h2>
-        <p className="card-description">{description}</p>
-        <p className="card-hourly-charges">${hourlyCharges}/hour</p>
-        <div className="card-skills">
+        <h2 className="card-title" style={{ height: '100px' }}>{title}</h2>
+        {/* <p className="card-description">{description}</p> */}
+        <p className="card-text">
+          {description.length > 200 ? (
+            <>
+              {showMore ? description : description.slice(0, 200) + '... '}
+              <button className="btn btn-link" onClick={() => setShowMore(!showMore)}>
+                {showMore ? 'Read Less' : 'Read More'}
+              </button>
+            </>
+          ) : description}
+        </p>
+        {/* <p className="card-hourly-charges">${hourlyCharges}/hour</p> */}
+        <p className="card-text" style={{ backgroundColor: 'rgb(255 181 181)', width: 'max-content', padding: '3px', fontWeight: 'bold', borderRadius: '5px' }}>{hourlyCharges} ₹/hr</p>
+        <div className="card-skills" style={{ marginLeft: '20%' }}>
           <ShinyTag skill={skill} />
         </div>
         <div className="card-buttons">
           <button
-            className="contact-button"
+            className="btn btn-info"
             onClick={() => fetchContactDetails(id)}
           >
             Contact
@@ -83,20 +98,20 @@ const FreelancerCard = ({
             p: 4,
           }}
         >
-          <Typography variant="h6" component="div" gutterBottom>
+          <Typography variant="h6" component="div" gutterBottom style={{ textDecoration: 'underline' }}>
             Contact Details
           </Typography>
           {contactDetails && (
             <div>
-              <p>Name: {contactDetails.name}</p>
-              <p>Email: {contactDetails.email}</p>
-              <p>Mobile Number: {contactDetails.mobileNumber}</p>
+              <p><b>Name: </b> {contactDetails.name}</p>
+              <p><b>Email: </b> {contactDetails.email}</p>
+              {/* <p>Mobile Number: {contactDetails.mobileNumber}</p> */}
             </div>
           )}
-          <Button onClick={handleCloseModal}>Close</Button>
+          <Button className='btn btn-primary' onClick={handleCloseModal}>Close</Button>
         </Box>
       </Modal>
-    </div>
+    </div >
   );
 };
 

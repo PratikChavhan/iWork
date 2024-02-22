@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
 /* Add these styles for the modal */
 .modal {
   display: none;
@@ -98,7 +99,7 @@
 /* ... (your existing styles) */
 
 .shiny-tag {
-  background: linear-gradient(to right, #ff8c00, #ffc107);
+  background: linear-gradient(to right, #743b93, #b33030);
   color: #fff;
   padding: 8px 12px;
   border-radius: 20px;

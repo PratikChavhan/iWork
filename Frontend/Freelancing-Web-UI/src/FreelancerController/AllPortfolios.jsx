@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Modal } from 'react-bootstrap';
+import EditForm from './EditForm'; // Import the EditForm component
 
 const AllPortfolios = () => {
     const [portfolios, setPortfolios] = useState([]);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [deleteId, setDeleteId] = useState(null);
+    const [showEditForm, setShowEditForm] = useState(false); // State to manage the visibility of the edit form
+    const [editPortfolio, setEditPortfolio] = useState(null); // State to store the portfolio being edited
 
     useEffect(() => {
         fetchPortfolios();
@@ -20,8 +23,9 @@ const AllPortfolios = () => {
         }
     };
 
-    const handleEdit = (id) => {
-        console.log('Edit clicked for portfolio ID:', id);
+    const handleEdit = (portfolio) => {
+        setEditPortfolio(portfolio); // Set the portfolio being edited
+        setShowEditForm(true); // Show the edit form
     };
 
     const handleDelete = async (id) => {
@@ -33,7 +37,7 @@ const AllPortfolios = () => {
         try {
             await axios.delete(`http://localhost:9091/freelancing/api/Portfolio/deleteById/${deleteId}`);
             setShowConfirmation(false);
-            fetchPortfolios(); // Refresh portfolios after deletion
+            fetchPortfolios();
         } catch (error) {
             console.error('Error deleting portfolio:', error);
         }
@@ -41,6 +45,12 @@ const AllPortfolios = () => {
 
     const handleCloseConfirmation = () => {
         setShowConfirmation(false);
+    };
+
+    const handleCloseEditForm = () => {
+        setShowEditForm(false);
+
+        fetchPortfolios();
     };
 
     return (
@@ -64,13 +74,13 @@ const AllPortfolios = () => {
                             <td>{portfolio.title}</td>
                             <td>{portfolio.description}</td>
                             <td>
-                                <img src={portfolio.image} alt={portfolio.title} style={{ width: '100px', height: 'auto' }} />
+                                <img src={portfolio.image} alt={portfolio.title} style={{ width: '100px', height: '100px' }} />
                             </td>
                             <td>{portfolio.hourlyCharges}</td>
-                            <td>{portfolio.category.title}</td>
+                            <td>{portfolio.category && portfolio.category.title}</td>
                             <td>
-                                <Button variant="dark" className="me-2" onClick={() => handleEdit(portfolio.id)}>Edit</Button>
-                                <Button variant="dark" onClick={() => handleDelete(portfolio.id)}>Delete</Button>
+                                <Button variant="secondary" className="me-2" onClick={() => handleEdit(portfolio)}>Edit</Button>
+                                <Button variant="danger" onClick={() => handleDelete(portfolio.id)}>Delete</Button>
                             </td>
                         </tr>
                     ))}
@@ -90,6 +100,7 @@ const AllPortfolios = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            {showEditForm && editPortfolio && <EditForm portfolio={editPortfolio} handleClose={handleCloseEditForm} />}
         </div>
     );
 };

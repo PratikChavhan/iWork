@@ -12,7 +12,9 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store/auth-slice";
-import logo from '../assests/logo.jpg';
+import logowide from '../assests/logo-wide.jpg';
+import logobg from '../assests/logo-bg.png';
+import logobgnotag from '../assests/logo-bg-no-tag.png';
 
 const navigationLinks = [
   // { label: "Home", path: "/" },
@@ -42,8 +44,10 @@ function Header() {
   };
 
   const login = () => {
-    navigate("/");
+    navigate("/login");
   };
+
+
 
   return (
     <AppBar
@@ -60,9 +64,19 @@ function Header() {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link to='/'>
-            <img height={'90px'} width={'150px'} style={{ cursor: 'pointer' }} src={logo} />
-          </Link>
+          {!isLoggedIn && (
+            <Link to='/'>
+              <img height={'60px'} width={'150px'} style={{ cursor: 'pointer', marginTop: '10px' }} src={logobgnotag} />
+            </Link>
+          )}
+
+          {isLoggedIn && (
+            <Link to='/login'>
+              <img height={'60px'} width={'150px'} style={{ cursor: 'pointer', marginTop: '10px' }} src={logobgnotag} />
+            </Link>
+          )}
+
+
         </Typography>
 
         {isLoggedIn && (

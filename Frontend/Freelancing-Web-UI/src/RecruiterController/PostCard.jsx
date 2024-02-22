@@ -16,12 +16,12 @@ const PostCard = ({ post }) => {
         </span>
       </div>
       <div className="post-comments">
-        {/* <h4>Comments</h4>
+        <h4>Comments</h4>
         <ul>
           {post.comments.map((comment) => (
             <li key={comment.id}>{comment.text}</li>
           ))}
-        </ul> */}
+        </ul>
       </div>
     </div>
   );

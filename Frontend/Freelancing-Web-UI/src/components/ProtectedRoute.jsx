@@ -14,8 +14,11 @@ import AdminLandingPage from "../AdminControllers/AdminLandingPage";
 import PostTable from "../RecruiterController/PostTable";
 import EditPostForm from "../RecruiterController/EditPost";
 import FreelancerLandingPage from "../FreelancerController/FreelancerLandingPage";
+import Footer from "./Footer";  // Import Footer component
 import Contact from "./Contact";
 import AboutPage from "./About";
+import LandingPage from "./LandingPage";
+
 const ProtectedRoute = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -41,10 +44,10 @@ const ProtectedRoute = () => {
 
   const routesForUnAuthUser = (
     <>
-      <Route path="/" element={<LoginForm />} />
+      <Route path="/" element={<LandingPage />} />
       <Route path="/signup" element={<SignUpForm />} />
       <Route path="/about" element={<AboutPage />} />
-      <Route path="/products" element={<Home />} />
+      <Route path="/login" element={<LoginForm />} />
       <Route path="/contact" element={<Contact />} />
       <Route
         path="*"
@@ -55,14 +58,14 @@ const ProtectedRoute = () => {
 
   const routesForRecruiter = (
     <>
-      <Route path="/" element={<RecruiterLandingPage />}></Route>
+      <Route path="/login" element={<RecruiterLandingPage />}></Route>
       <Route path="/add-work" element={<PostForm />} />
       <Route path="/edit-post/:postId" element={<EditPostForm />} />
       <Route path="/my-posts" element={<PostTable />} />
       <Route path="/profile" element={<UserProfile />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/products" element={<Home />} />
-      <Route path="/contact" element={<Home />} />
+      <Route path="/contact" element={<Contact />} />
       <Route
         path="*"
         element={<Error message={"Invalid path please check the url"} />}
@@ -71,12 +74,12 @@ const ProtectedRoute = () => {
   );
   const routesForFreelancer = (
     <>
-      <Route path="/" element={<FreelancerLandingPage />}></Route>
+      <Route path="/login" element={<FreelancerLandingPage />}></Route>
       <Route path="/profile" element={<UserProfile />} />
       <Route path="/add-portfolio" element={<AddUser />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/products" element={<Home />} />
-      <Route path="/contact" element={<Home />} />
+      <Route path="/contact" element={<Contact />} />
       <Route
         path="*"
         element={<Error message={"Invalid path please check the url"} />}
@@ -84,9 +87,12 @@ const ProtectedRoute = () => {
     </>
   );
 
-  const routesForADMIN = (
+  const routesForAdmin = (
     <>
-      <Route path="/" element={<AdminLandingPage />}></Route>
+      <Route path="/login" element={<AdminLandingPage />}></Route>
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/profile" element={<UserProfile />} />
+      <Route path="/contact" element={<Contact />} />
       <Route
         path="*"
         element={<Error message={"Invalid path please check the url"} />}
@@ -109,17 +115,18 @@ const ProtectedRoute = () => {
       case "FREELANCER":
         return routesForFreelancer;
       case "ADMIN":
-        return "routesForAdmin";
+        return routesForAdmin;
+      default:
+        return routesForUnAuthUser;
     }
   };
 
   return (
     <div>
-      {isLoggedIn ? (
-        <Routes> {findRoute()} </Routes>
-      ) : (
-        <Routes>{findRoute()}</Routes>
-      )}
+      <Routes>
+        {findRoute()}
+      </Routes>
+      <Footer /> {/* Include Footer component outside of Routes */}
     </div>
   );
 };

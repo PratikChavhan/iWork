@@ -23,6 +23,8 @@ public class PortfolioDto {
 	private String hourlyCharges;
 
 	private CategoryDto category;
+	
+	private UserDto user;
 
 	
     

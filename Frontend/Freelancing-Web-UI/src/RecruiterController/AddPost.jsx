@@ -269,6 +269,7 @@ const PostForm = () => {
           </Button>
         </form>
       </Container>
+      <br />
     </ThemeProvider>
   );
 };

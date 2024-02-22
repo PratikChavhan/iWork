@@ -1,16 +1,17 @@
+create database FreelancingWebApplication;
 use FreelancingWebApplication;
 
 -- role creation
 	INSERT INTO role (created_at, entity_status, updated_at, name) VALUES (CURRENT_TIMESTAMP, 'ACTIVE', CURRENT_TIMESTAMP, 'ADMIN');
     INSERT INTO role (created_at, entity_status, updated_at, name) VALUES (CURRENT_TIMESTAMP, 'ACTIVE', CURRENT_TIMESTAMP, 'FREELANCER');
-    INSERT INTO role (created_at, entity_status, updated_at, name) VALUES (CURRENT_TIMESTAMP, 'ACTIVE', CURRENT_TIMESTAMP, 'RECRUTIER');
+    INSERT INTO role (created_at, entity_status, updated_at, name) VALUES (CURRENT_TIMESTAMP, 'ACTIVE', CURRENT_TIMESTAMP, 'RECRUITER');
     
     
 -- admin
-INSERT INTO user (created_at, entity_status, updated_at, about, city, country, email, image, mobile_number, name, password) VALUES (CURRENT_TIMESTAMP, 'ACTIVE', CURRENT_TIMESTAMP, null, null, null, 'pratik.chavhan.77@gmail.com', null, '9175857928', 'Pratik Chavhan', '$2a$10$Ds97xxrtJHFeq7IsaPNnJeHgfB2on9mIwS6XrvhEE0lA4euiNEnpe');
+INSERT INTO users (created_at, entity_status, updated_at, about, city, country, email, image, mobile_number, name, password) VALUES (CURRENT_TIMESTAMP, 'ACTIVE', CURRENT_TIMESTAMP, null, null, null, 'pratik.chavhan.77@gmail.com', null, '9175857928', 'Pratik Chavhan', '$2a$10$Ds97xxrtJHFeq7IsaPNnJeHgfB2on9mIwS6XrvhEE0lA4euiNEnpe');
 
 
-INSERT INTO user_role (created_at, entity_status, updated_at, role_id, user_id) VALUES (CURRENT_TIMESTAMP, 'ACTIVE', CURRENT_TIMESTAMP, 3, 3);
+INSERT INTO user_role (created_at, entity_status, updated_at, role_id, user_id) VALUES (CURRENT_TIMESTAMP, 'ACTIVE', CURRENT_TIMESTAMP, 1, 1);
 
 
 -- category

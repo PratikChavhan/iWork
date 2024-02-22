@@ -19,26 +19,26 @@ const FreelancerLandingPage = () => {
     <Container className="mt-4">
       <Row>
         <Col>
-          <h2>Welcome to Freelancer Landing Page</h2>
+          <h2 style={{ fontWeight: 'bold' }}><u>Welcome Freelancer</u></h2>
         </Col>
       </Row>
       <Row className="my-4">
         <Col>
           <Button
-            variant="dark"
+            variant="primary"
             className="me-2"
             onClick={() => handleButtonClick("addNewPortfolio")}
           >
-            Add New Portfolio
+            Add Portfolio
           </Button>
           <Button
-            variant="dark"
+            variant="primary"
             className="me-2"
             onClick={() => handleButtonClick("myPortfolios")}
           >
             My Portfolios
           </Button>
-          <Button variant="dark" onClick={() => handleButtonClick("back")}>
+          <Button variant="secondary" onClick={() => handleButtonClick("back")}>
             Back
           </Button>
         </Col>

@@ -20,15 +20,5 @@ public class FreelancingWebApplication {
 		return new ModelMapper();
 	}
 
-	@Configuration
-public class WebConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedMethods("*")
-                .allowedOrigins("*")
-                .allowedHeaders("*");
-    }
-}
 }

@@ -1,53 +1,47 @@
-
 import React, { useState } from 'react';
 import ViewAllCategory from './ViewAllCategory';
-import ViewAllUser from './ViewAllUser'; 
+import ViewAllUser from './ViewAllUser';
+import AddCategoryParent from './AddCategoryParent';
+
+
 const AdminLandingPage = () => {
 
     const [showAllUsers, setShowAllUsers] = useState(false);
     const [showAllCategory, setShowAllCategory] = useState(false);
+    const [showAddCategory, setShowAddCategory] = useState(false);
+
     const handleViewAllCategory = () => {
         setShowAllCategory(true);
+        setShowAllUsers(false);
+        setShowAddCategory(false);
     };
-    
-    const handleAddCategory = () => {
-       
-    };
+
     const handleViewUsers = () => {
         setShowAllUsers(true);
+        setShowAllCategory(false);
+        setShowAddCategory(false);
     };
 
-    const handleBack = () => {
-       window.history.back();
-    };
-
-    const handleLogout = () => {
-        
+    const handleViewAddCategory = () => {
+        setShowAddCategory(true);
+        setShowAllUsers(false);
+        setShowAllCategory(false);
     };
 
     return (
         <div className="container mt-4">
-            <h2>Welcome Admin</h2>
-            <div className="d-flex justify-content-between">
-                <button className="btn btn-primary mb-2" onClick={handleBack}>Back</button>
-                <div>
-                    <button className="btn btn-danger mb-2" onClick={handleLogout}>Logout</button>
-                </div>
-            </div>
+            <h2><u>Welcome Admin</u></h2>
+
             <div className="btn-group-vertical">
-                <button className="btn btn-primary mb-2" onClick={handleAddCategory}>Add New Category</button>
                 <button className="btn btn-primary mb-2" onClick={handleViewUsers}>View Users</button>
                 <button className="btn btn-primary mb-2" onClick={handleViewAllCategory}>View All Category</button>
+                <button className="btn btn-success mb-2" onClick={handleViewAddCategory}>Add Category</button>
             </div>
             {showAllUsers && <ViewAllUser />}
             {showAllCategory && <ViewAllCategory />}
-
+            {showAddCategory && <AddCategoryParent />}
         </div>
     );
 };
-
-
-
-
 
 export default AdminLandingPage;

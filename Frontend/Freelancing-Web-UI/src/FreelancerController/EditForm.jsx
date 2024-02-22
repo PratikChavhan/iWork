@@ -23,8 +23,8 @@ const EditForm = ({ portfolio, handleClose }) => {
         e.preventDefault();
         try {
             await axios.put(`http://localhost:9091/freelancing/api/Portfolio/updateportfolioById/${portfolio.id}`, formData);
-            handleClose();
-            window.location.reload();
+            handleClose(); // Close the modal after successful submission
+            // Optionally, update the state to reflect the changes without a page refresh
         } catch (error) {
             console.error('Error updating portfolio:', error);
         }
@@ -54,10 +54,11 @@ const EditForm = ({ portfolio, handleClose }) => {
 
                     <Form.Group className="mb-3" controlId="hourlyCharges">
                         <Form.Label>Hourly Charges</Form.Label>
-                        <Form.Control type="number" name="hourlyCharges" value={formData.hourlyCharges} onChange={handleChange} required />
+                        <Form.Control type="text" name="hourlyCharges" value={formData.hourlyCharges} onChange={handleChange} pattern="^(?!-)\d+(\.\d+)?$"
+                            title="negative value not allowed" required />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" type="submit" >
                         Submit
                     </Button>
                     <Button variant="secondary" onClick={handleClose} className="ms-2">

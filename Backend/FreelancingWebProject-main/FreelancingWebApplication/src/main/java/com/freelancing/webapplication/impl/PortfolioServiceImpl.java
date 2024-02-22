@@ -52,12 +52,16 @@ public class PortfolioServiceImpl implements PortfolioService {
 	@Override
 	public PortfolioDto updatePortfolio(PortfolioDto portfolioDto, Integer portfolioId) {
 
-		Portfolio portfolio = this.portfolioRepo.findById(portfolioId)
+        Portfolio oldPortfolio = this.portfolioRepo.findById(portfolioId)
 				.orElseThrow(() -> new ResourceNotFoundException("Portfolio", "portfolioId", portfolioId));
-
-		Portfolio updatedportfolio = this.portfolioRepo.save(portfolio);
+						
+		oldPortfolio.setTitle(portfolioDto.getTitle());
+		oldPortfolio.setDescription(portfolioDto.getDescription());
+		oldPortfolio.setHourlyCharges(portfolioDto.getHourlyCharges());
+		oldPortfolio.setImage(oldPortfolio.getImage());
+	    this.portfolioRepo.save(oldPortfolio);
+		Portfolio updatedportfolio = this.portfolioRepo.save(oldPortfolio);
 		return this.modelMapper.map(updatedportfolio, PortfolioDto.class);
-
 	}
 
 	@Override
@@ -70,6 +74,15 @@ public class PortfolioServiceImpl implements PortfolioService {
 
 	@Override
 	public List<PortfolioDto> getAllPortfolio() {
+		List<Portfolio> allPortfolio = this.portfolioRepo.findAll();
+		List<PortfolioDto> allPortfolioDTO = allPortfolio.stream()
+				.map(portfolio -> this.modelMapper.map(portfolio, PortfolioDto.class)).collect(Collectors.toList());
+		return allPortfolioDTO;
+
+	}
+	
+	@Override
+	public List<PortfolioDto> getAllPortfolioByUserId(Integer UserId) {
 		List<Portfolio> allPortfolio = this.portfolioRepo.findAll();
 		List<PortfolioDto> allPortfolioDTO = allPortfolio.stream()
 				.map(portfolio -> this.modelMapper.map(portfolio, PortfolioDto.class)).collect(Collectors.toList());

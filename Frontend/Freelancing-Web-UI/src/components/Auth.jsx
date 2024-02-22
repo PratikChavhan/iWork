@@ -10,9 +10,12 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import logo from '../assests/logo.jpg'
+// import logo from '../assests/logo.jpg';
+//import logo_only from '../assests/logo_only.png';
+import backgroundwide from "../assests/logo-login.jpg";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth-slice";
+import { useState } from "react";
 import axios from "axios";
 import baseUrl from "../util";
 
@@ -24,12 +27,15 @@ const LoginForm = () => {
       },
     },
   });
+
   const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const [errorMessage, setErrorMessage] = useState(""); // State to hold error message
 
   const onSubmit = (data) => {
     axios({
@@ -60,39 +66,56 @@ const LoginForm = () => {
       })
       .catch((error) => {
         console.log(error);
+        if (error.response && error.response.status === 404) {
+          setErrorMessage("Please enter valid credentials.");
+        }
       });
   };
 
   return (
     <ThemeProvider theme={customTheme}>
-      <div style={{ display: 'flex', gap: '10px' }}>
-        <div style={{ width: '60%', height: '500px' }}>
-          <img width={'100%'} src={logo} alt="Company_logo" />
-        </div>
+      <Box
+        sx={{
+          //backgroundColor: "rgba(0, 0, 0, 0.5)", 
+          backgroundImage: `url(${backgroundwide})`,
+          backgroundColor: "rgba(0, 0, 0, 0.5)",  // Set background image
+          backgroundSize: "cover",
+          minHeight: "100vh", // Adjusted minHeight to fill entire viewport
+          display: "flex",
+          padding: "30",
+          opacity: "10px",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          overflowY: "auto", // Allow vertical scrolling
+        }}
+      >
+        <CssBaseline />
         <Container component="main" maxWidth="xs">
-          <CssBaseline />
           <Box
             sx={{
-              padding: 3,
-              boxShadow: 4,
-              marginTop: 10,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
+              backgroundColor: "rgba(255, 255, 255, 0.9)", // Semi-transparent white background
+              borderRadius: "20px", // Rounded corners
+              padding: "20px",
+              opacity: "100%",
+              boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)", // Shadow effect
+              textAlign: "center", // Centered content
+              marginTop: 1,
+              marginBottom: 20,
+              height: "auto",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-            <Typography component="h1" variant="h5">
+            <Avatar sx={{ m: "auto", bgcolor: "#424dbd" }}></Avatar>
+            <Typography
+              component="h1"
+              variant="h5"
+              sx={{ marginBottom: "20px" }}
+            >
               Sign in
             </Typography>
-            <Box
-              component="form"
-              onSubmit={handleSubmit(onSubmit)} // Pass the onSubmit function to handleSubmit
-              noValidate
-              sx={{ mt: 1 }}
-            >
+            <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
               <TextField
-                {...register("email", { required: true })} // Register the input with react-hook-form
+                {...register("email", { required: true })}
                 margin="normal"
                 required
                 fullWidth
@@ -103,7 +126,7 @@ const LoginForm = () => {
                 autoFocus
               />
               <TextField
-                {...register("password", { required: true })} // Register the input with react-hook-form
+                {...register("password", { required: true })}
                 margin="normal"
                 required
                 fullWidth
@@ -113,7 +136,6 @@ const LoginForm = () => {
                 id="password"
                 autoComplete="current-password"
               />
-
               <Button
                 type="submit"
                 fullWidth
@@ -122,22 +144,22 @@ const LoginForm = () => {
               >
                 Sign In
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  {/* <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link> */}
-                </Grid>
+              <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link href="/signup" variant="body2" style={{ textAlign: 'center', marginRight: '70px' }}>
+                  <Link href="/signup" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
               </Grid>
             </Box>
+            {errorMessage && (
+              <Box sx={{ mt: 2 }}>
+                <Typography color="error">{errorMessage}</Typography>
+              </Box>
+            )}
           </Box>
         </Container>
-      </div>
+      </Box>
     </ThemeProvider>
   );
 };

@@ -18,5 +18,7 @@ public interface PortfolioService {
     void deletePortfolio(Integer portfolioId);
 
     UserModel getUserByPostId(Integer id);
+    
+    List<PortfolioDto> getAllPortfolioByUserId(Integer userId);
 
 }

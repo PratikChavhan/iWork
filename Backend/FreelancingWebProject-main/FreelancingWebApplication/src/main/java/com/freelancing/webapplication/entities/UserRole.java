@@ -8,9 +8,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-/**
- * UserRole
- */
+// UserRole
+
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = false)

@@ -125,7 +125,6 @@ public class PostServiceImpl implements PostService {
 				.orElseThrow(() -> new ResourceNotFoundException("Category", "categoryId", categoryId));
 
 		Work post = this.modelMapper.map(postDTO, Work.class);
-//		post.setImage(xyz);
 		post.setCategory(category);
 		post.setUser(user);
 		post.setStatus(true);

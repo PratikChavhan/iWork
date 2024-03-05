@@ -2,9 +2,8 @@ package com.freelancing.webapplication.modal;
 
 import lombok.Data;
 
-/**
- * AuthToken
- */
+// AuthToken
+
 @Data
 public class AuthToken {
 

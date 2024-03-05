@@ -6,9 +6,8 @@ import jakarta.persistence.Enumerated;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-/**
- * Role
- */
+// Role
+
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = false)

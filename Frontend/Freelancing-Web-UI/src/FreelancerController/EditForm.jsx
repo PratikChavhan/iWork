@@ -54,8 +54,8 @@ const EditForm = ({ portfolio, handleClose }) => {
 
                     <Form.Group className="mb-3" controlId="hourlyCharges">
                         <Form.Label>Hourly Charges</Form.Label>
-                        <Form.Control type="text" name="hourlyCharges" value={formData.hourlyCharges} onChange={handleChange} pattern="^(?!-)\d+(\.\d+)?$"
-                            title="negative value not allowed" required />
+                        <Form.Control type="text" name="hourlyCharges" value={formData.hourlyCharges} onChange={handleChange} pattern="^(?!-)(?!0)\d{3,}$"
+                            title="value not allowed" required />
                     </Form.Group>
 
                     <Button variant="primary" type="submit" >

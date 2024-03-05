@@ -12,7 +12,8 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import logo from '../assests/logo.jpg';
 //import logo_only from '../assests/logo_only.png';
-import backgroundwide from "../assests/logo-login.jpg";
+import backgroundwide from "../assests/logo-login.png";
+import logonobg from "../assests/logo-bg-no-tag.png"
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth-slice";
 import { useState } from "react";
@@ -81,6 +82,7 @@ const LoginForm = () => {
           backgroundColor: "rgba(0, 0, 0, 0.5)",  // Set background image
           backgroundSize: "cover",
           minHeight: "100vh", // Adjusted minHeight to fill entire viewport
+          maxHeight: '100%',
           display: "flex",
           padding: "30",
           opacity: "10px",
@@ -90,6 +92,9 @@ const LoginForm = () => {
           overflowY: "auto", // Allow vertical scrolling
         }}
       >
+        <div>
+          <img src={logonobg} style={{ marginLeft: '100px', marginRight: '-200px', marginTop: '-100px' }}></img>
+        </div>
         <CssBaseline />
         <Container component="main" maxWidth="xs">
           <Box
@@ -98,11 +103,12 @@ const LoginForm = () => {
               borderRadius: "20px", // Rounded corners
               padding: "20px",
               opacity: "100%",
-              boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)", // Shadow effect
+              boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.5)", // Shadow effect
               textAlign: "center", // Centered content
-              marginTop: 1,
+              marginTop: "100px",
               marginBottom: 20,
-              height: "auto",
+              height: "450px",
+              width: "450px"
             }}
           >
             <Avatar sx={{ m: "auto", bgcolor: "#424dbd" }}></Avatar>

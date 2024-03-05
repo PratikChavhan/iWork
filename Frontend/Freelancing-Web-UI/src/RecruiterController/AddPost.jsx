@@ -220,9 +220,9 @@ const PostForm = () => {
               name="budget"
               value={formData.budget}
               onChange={handleChange}
-              pattern="^(?!-)\d+(\.\d+)?$"
+              pattern="^(?!-)(?!0)\d{3,}$"
               required
-              title="negative value not allowed"
+              title="value not allowed"
               className={`form-control ${errors.budget ? "is-invalid" : ""}`}
               placeholder="Enter the budget"
             />

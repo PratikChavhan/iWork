@@ -122,7 +122,7 @@ const MyProfile = () => {
   };
 
   const fetchCities = (country) => {
-    let data = ["Mumbai", "Delhi", "Bangalore", "Kolkata", "Chennai"];
+    let data = ["Pune", "Mumbai", "Delhi", "Bangalore", "Kolkata", "Chennai", "Nagpur"];
     setCities(data);
   };
   // const fetchCities = (country) => {

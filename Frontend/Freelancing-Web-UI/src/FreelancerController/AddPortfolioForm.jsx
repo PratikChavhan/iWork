@@ -161,8 +161,8 @@ const AddPortfolioForm = ({ handleButtonClick }) => {
                   name="hourlyCharges"
                   value={formData.hourlyCharges}
                   onChange={handleChange}
-                  pattern="^(?!-)\d+(\.\d+)?$"
-                  title="negative value not allowed"
+                  pattern="^(?!-)(?!0)\d{3,}$"
+                  title="value not allowed"
                   required
                 />
               </td>

@@ -22,7 +22,7 @@ import { Link, useNavigate } from "react-router-dom"; // Import for login link
 import baseUrl from "./util";
 import signup from '../src/assests/SignUp.jpg';
 const SignUpForm = () => {
-  const names = ["FREELANCER", "RECRUITER", "ADMIN"];
+  const names = ["FREELANCER", "RECRUITER"];
   const [selectedNames, setSelectedNames] = useState("");
   const navigate = useNavigate();
   const customTheme = createTheme({

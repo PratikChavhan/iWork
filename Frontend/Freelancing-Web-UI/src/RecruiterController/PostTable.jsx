@@ -52,7 +52,7 @@ function PostTable() {
   };
 
   const handleBack = () => {
-    navigate("/");
+    navigate("/login");
   };
 
   return (

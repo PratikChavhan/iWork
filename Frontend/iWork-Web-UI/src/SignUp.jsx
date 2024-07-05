@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import logo from '../src/assests/logo.jpg'
 import {
   Button,
   TextField,
@@ -14,13 +13,12 @@ import {
   InputLabel,
   OutlinedInput,
   Stack,
-  Chip,
   ThemeProvider,
   createTheme,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom"; // Import for login link
 import baseUrl from "./util";
-import signup from '../src/assests/SignUp.jpg';
+import signup from "../src/assests/SignUp.jpg";
 const SignUpForm = () => {
   const names = ["FREELANCER", "RECRUITER"];
   const [selectedNames, setSelectedNames] = useState("");
@@ -60,11 +58,9 @@ const SignUpForm = () => {
   };
 
   return (
-    <div style={{ border: '1px solid black', display: "flex", gap: '20px' }}>
-
-
+    <div style={{ border: "1px solid black", display: "flex", gap: "20px" }}>
       <ThemeProvider theme={customTheme}>
-        <Container component="main" maxWidth="xs" >
+        <Container component="main" maxWidth="xs">
           <Box
             sx={{
               boxShadow: 4,
@@ -107,7 +103,10 @@ const SignUpForm = () => {
               <TextField
                 {...register("email", {
                   required: "Email is required",
-                  pattern: { value: /^[a-zA-Z0-9._]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: "Invalid email" },
+                  pattern: {
+                    value: /^[a-zA-Z0-9._]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "Invalid email",
+                  },
                 })}
                 label="Email"
                 fullWidth
@@ -118,7 +117,10 @@ const SignUpForm = () => {
               <TextField
                 {...register("mobileNumber", {
                   required: "Mobile is required",
-                  pattern: { value: /^(?:\+91|0)?\d{10}$/, message: "Invalid mobile number" },
+                  pattern: {
+                    value: /^(?:\+91|0)?\d{10}$/,
+                    message: "Invalid mobile number",
+                  },
                 })}
                 label="Mobile"
                 fullWidth
@@ -130,7 +132,8 @@ const SignUpForm = () => {
                 {...register("password", {
                   required: "Password is required",
                   pattern: {
-                    value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/,
+                    value:
+                      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/,
                     message: "Invalid password format ex: Xyz@123",
                   },
                 })}
@@ -192,8 +195,8 @@ const SignUpForm = () => {
         </Container>
       </ThemeProvider>
 
-      <div style={{ width: '50%', marginTop: "25px", marginRight: '20px' }}>
-        <img width={'98%'} height={'650px'} src={signup} alt="error" />
+      <div style={{ width: "50%", marginTop: "25px", marginRight: "20px" }}>
+        <img width={"98%"} height={"650px"} src={signup} alt="error" />
       </div>
     </div>
   );

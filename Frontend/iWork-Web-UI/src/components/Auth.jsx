@@ -10,10 +10,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-// import logo from '../assests/logo.jpg';
-//import logo_only from '../assests/logo_only.png';
 import backgroundwide from "../assests/logo-login.png";
-import logonobg from "../assests/logo-bg-no-tag.png"
+import logonobg from "../assests/logo-bg1.png";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth-slice";
 import { useState } from "react";
@@ -33,7 +31,7 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
 
   const [errorMessage, setErrorMessage] = useState(""); // State to hold error message
@@ -77,12 +75,12 @@ const LoginForm = () => {
     <ThemeProvider theme={customTheme}>
       <Box
         sx={{
-          //backgroundColor: "rgba(0, 0, 0, 0.5)", 
+          //backgroundColor: "rgba(0, 0, 0, 0.5)",
           backgroundImage: `url(${backgroundwide})`,
-          backgroundColor: "rgba(0, 0, 0, 0.5)",  // Set background image
+          backgroundColor: "rgba(0, 0, 0, 0.5)", // Set background image
           backgroundSize: "cover",
           minHeight: "100vh", // Adjusted minHeight to fill entire viewport
-          maxHeight: '100%',
+          maxHeight: "100%",
           display: "flex",
           padding: "30",
           opacity: "10px",
@@ -93,7 +91,15 @@ const LoginForm = () => {
         }}
       >
         <div>
-          <img src={logonobg} style={{ marginLeft: '100px', marginRight: '-200px', marginTop: '-100px' }}></img>
+          <img
+            src={logonobg}
+            style={{
+              marginLeft: "100px",
+              marginRight: "-200px",
+              marginTop: "-100px",
+            }}
+            alt="iWork"
+          ></img>
         </div>
         <CssBaseline />
         <Container component="main" maxWidth="xs">
@@ -108,7 +114,7 @@ const LoginForm = () => {
               marginTop: "100px",
               marginBottom: 20,
               height: "450px",
-              width: "450px"
+              width: "450px",
             }}
           >
             <Avatar sx={{ m: "auto", bgcolor: "#424dbd" }}></Avatar>

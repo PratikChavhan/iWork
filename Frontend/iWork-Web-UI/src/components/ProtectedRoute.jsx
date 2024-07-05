@@ -14,7 +14,7 @@ import AdminLandingPage from "../AdminControllers/AdminLandingPage";
 import PostTable from "../RecruiterController/PostTable";
 import EditPostForm from "../RecruiterController/EditPost";
 import FreelancerLandingPage from "../FreelancerController/FreelancerLandingPage";
-import Footer from "./Footer";  // Import Footer component
+import Footer from "./Footer"; // Import Footer component
 import Contact from "./Contact";
 import AboutPage from "./About";
 import LandingPage from "./LandingPage";
@@ -100,9 +100,6 @@ const ProtectedRoute = () => {
     </>
   );
 
-
-
-
   const findRoute = () => {
     if (!isLoggedIn) {
       return routesForUnAuthUser;
@@ -123,9 +120,7 @@ const ProtectedRoute = () => {
 
   return (
     <div>
-      <Routes>
-        {findRoute()}
-      </Routes>
+      <Routes>{findRoute()}</Routes>
       <Footer /> {/* Include Footer component outside of Routes */}
     </div>
   );

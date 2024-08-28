@@ -3,6 +3,7 @@ import axios from "axios";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import storage from "../firebase/firebase";
 import { useSelector } from "react-redux";
+
 const AddPortfolioForm = ({ handleButtonClick }) => {
   const [categories, setCategories] = useState([]);
   const userId = useSelector((state) => state.auth.userId);
@@ -106,18 +107,6 @@ const AddPortfolioForm = ({ handleButtonClick }) => {
     window.history.back();
   };
 
-  const handleClose = () => {
-    handleBack();
-    setFormData({
-      title: "",
-      description: "",
-      image: null,
-      hourlyCharges: "",
-      categoryId: "",
-      status: true,
-    });
-  };
-
   return (
     <div className="add-portfolio-form">
       <h3>Add Portfolio</h3>
@@ -193,7 +182,9 @@ const AddPortfolioForm = ({ handleButtonClick }) => {
           </button>
         </div>
       </form>
-      <br /><br /><br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 };

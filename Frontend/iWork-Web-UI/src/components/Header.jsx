@@ -1,40 +1,41 @@
-import * as React from "react";
-import { useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store/auth-slice";
 import logobgnotag from "../assests/logo-bg-no-tag.png";
-
-const navigationLinks = [
-  // { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
-  { label: "Contact", path: "/contact" },
-];
+import dummyImage from "../assests/dummyUser.png";
+import "./css/Header.css";
 
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const userName = useSelector((state) => state.auth.userName);
+  const fullName = useSelector((state) => state.auth.fullName);
   const userImage = useSelector((state) => state.auth.userImage);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const dropdownRef = useRef(null);
+  const menuButtonRef = useRef(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleClickOutside = (event) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target) &&
+      !menuButtonRef.current.contains(event.target)
+    ) {
+      setDropdownVisible(false);
+    }
   };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const logout = () => {
     navigate("/");
@@ -45,105 +46,115 @@ function Header() {
     navigate("/login");
   };
 
+  const signup = () => {
+    navigate("/signup");
+  };
+
   return (
-    <AppBar
-      position="static"
-      style={{ marginRight: "10px", backgroundColor: "#000000" }}
-    >
-      <Toolbar>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={handleClick}
+    <nav className="navbar sticky-header">
+      <div className="container-header">
+        <button
+          className="menu-button"
+          type="button"
+          onClick={toggleDropdown}
+          aria-label="Toggle sidebar"
+          ref={menuButtonRef}
         >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {!isLoggedIn && (
-            <Link to="/">
-              <img
-                height={"70px"}
-                width={"150px"}
-                style={{
-                  cursor: "pointer",
-                  marginTop: "5px",
-                  marginBottom: "5px",
-                }}
-                src={logobgnotag}
-                alt="iWork"
-              />
-            </Link>
-          )}
-
-          {isLoggedIn && (
-            <Link to="/login">
-              <img
-                height={"70px"}
-                width={"150px"}
-                style={{
-                  cursor: "pointer",
-                  marginTop: "10px",
-                  marginBottom: "5px",
-                }}
-                src={logobgnotag}
-                alt="iWork"
-              />
-            </Link>
-          )}
-        </Typography>
-
-        {isLoggedIn && (
-          <>
-            {userImage ? (
-              <img
-                onClick={() => navigate("/profile")}
-                src={userImage}
-                alt="User Profile"
-                style={{
-                  cursor: "pointer",
-                  width: "32px",
-                  height: "32px",
-                  borderRadius: "50%",
-                  marginRight: "8px",
-                }}
-              />
-            ) : (
-              <AccountCircleIcon
-                onClick={() => navigate("/profile")}
-                sx={{ marginRight: 1, cursor: "pointer" }}
-              />
-            )}
-            <Typography variant="body1" sx={{ marginRight: 1 }}>
-              {userName}
-            </Typography>
-            <Button variant="outlined" onClick={logout} color="inherit">
-              Logout
-            </Button>
-          </>
-        )}
-
+          <span className="menu-icon"></span>
+        </button>
         {!isLoggedIn && (
-          <Button variant="outlined" onClick={login} color="inherit">
-            Login
-          </Button>
+          <Link to="/">
+            <img
+              src={logobgnotag}
+              className="navbar-logo"
+              draggable="false"
+              height="70"
+              width="150"
+              alt="iWork"
+            />
+          </Link>
         )}
-
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          {navigationLinks.map((link) => (
-            <MenuItem key={link.label} onClick={handleClose}>
-              <Button component={Link} to={link.path}>
-                {link.label}
-              </Button>
-            </MenuItem>
-          ))}
-        </Menu>
-      </Toolbar>
-    </AppBar>
+        {isLoggedIn && (
+          <Link to="/login">
+            <img
+              src={logobgnotag}
+              className="navbar-logo"
+              draggable="false"
+              height="70"
+              width="150"
+              alt="iWork"
+            />
+          </Link>
+        )}
+        <div className="navbar-links">
+          {isLoggedIn && (
+            <>
+              <div className="nav-item">
+                {userImage ? (
+                  <img
+                    src={userImage}
+                    alt="User Profile"
+                    className="user-profile"
+                    draggable="false"
+                    onClick={() => navigate("/profile")}
+                  />
+                ) : (
+                  <img
+                    src={dummyImage}
+                    alt="User Profile"
+                    className="user-profile"
+                    draggable="false"
+                    onClick={() => navigate("/profile")}
+                  />
+                )}
+              </div>
+              <div className="nav-item">
+                <span className="navbar-text">{fullName}</span>
+              </div>
+              <div className="nav-item">
+                <button className="btn-header" onClick={logout}>
+                  Logout
+                </button>
+              </div>
+            </>
+          )}
+          {!isLoggedIn && (
+            <>
+              <div className="nav-item">
+                <button className="btn-header" onClick={login}>
+                  Login
+                </button>
+              </div>
+              <div className="nav-item">
+                <button className="btn-header" onClick={signup}>
+                  SignUp
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+      {dropdownVisible && (
+        <>
+          <div className="dropdown-menu show" ref={dropdownRef}>
+            <Link
+              className="dropdown-item"
+              to="/about"
+              onClick={() => setDropdownVisible(false)}
+            >
+              About
+            </Link>
+            <Link
+              className="dropdown-item"
+              to="/contact"
+              onClick={() => setDropdownVisible(false)}
+            >
+              Contact
+            </Link>
+          </div>
+        </>
+      )}
+    </nav>
   );
 }
 

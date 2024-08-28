@@ -17,7 +17,7 @@ import {
   Stack,
   Chip,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom"; // Import for login link
+import { useNavigate } from "react-router-dom"; // Import for login link
 import baseUrl from "../util";
 
 const AddUser = () => {

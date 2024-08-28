@@ -8,7 +8,7 @@ const PostList = () => {
   useEffect(() => {
     instance
       .get(
-        `http://localhost:9091/freelancing/api/allPosts?pageNumber=0&pageSize=10&sortBy=Id&sortDirection=descending`
+        `${baseUrl}allPosts?pageNumber=0&pageSize=10&sortBy=Id&sortDirection=descending`
       )
       .then((res) => {
         setPost(res.data.content);

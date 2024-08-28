@@ -1,15 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import landingPageImage from "../assests/Landing-Page.jpg";
-import "./css/LandingPage.css"; // Import the CSS file
+import landingPageImage from "../assests/Landing-Page1.png";
+import "./css/LandingPage.css";
 
 const LandingPage = () => {
   return (
     <div className="landing-page-container">
       <img
         className="landing-page-image"
+        draggable="false"
         src={landingPageImage}
         alt="Landing"
+        loading="lazy"
       />
 
       <div className="landing-page-content">

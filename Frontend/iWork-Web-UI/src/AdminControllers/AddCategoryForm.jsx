@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import axios from 'axios';
+import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import axios from "axios";
 
 const AddCategoryForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
-    title: '',
-    description: ''
+    title: "",
+    description: "",
   });
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -22,29 +22,33 @@ const AddCategoryForm = ({ onSubmit }) => {
     e.preventDefault();
 
     if (!formData.title || !formData.description) {
-      setError('Both fields are required');
+      setError("Both fields are required");
       return;
     }
 
-    axios.post('http://localhost:9091/freelancing/api/Categories/register', formData)
-      .then(response => {
+    axios
+      .post(
+        "http://localhost:9091/freelancing/api/Categories/register",
+        formData
+      )
+      .then((response) => {
         console.log(response.data); // Handle response as needed
         onSubmit(); // Optional: Call the callback function after successful submission
-        setFormData({   // Reset the form after submission if needed
-          title: '',
-          description: ''
+        setFormData({
+          // Reset the form after submission if needed
+          title: "",
+          description: "",
         });
-        setError('');
+        setError("");
       })
-      .catch(error => {
-        console.error('Error:', error);
-        setError('Failed to submit form');
+      .catch((error) => {
+        console.error("Error:", error);
+        setError("Failed to submit form");
       });
   };
 
   return (
     <Form onSubmit={handleSubmit}>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
       <Form.Group controlId="formCategoryTitle">
         <Form.Label>Title</Form.Label>
         <Form.Control
@@ -66,6 +70,7 @@ const AddCategoryForm = ({ onSubmit }) => {
           onChange={handleChange}
         />
       </Form.Group>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <Button variant="primary" type="submit">
         Submit
       </Button>

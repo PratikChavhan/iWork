@@ -181,8 +181,9 @@ const PostForm = () => {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className={`form-control ${errors.description ? "is-invalid" : ""
-                }`}
+              className={`form-control ${
+                errors.description ? "is-invalid" : ""
+              }`}
               placeholder="Enter a description"
             />
             <div className="invalid-feedback">{errors.description}</div>
@@ -203,7 +204,7 @@ const PostForm = () => {
             {imagePreview && (
               <img
                 src={imagePreview}
-                alt="Image Preview"
+                alt="Preview"
                 className="mt-2 img-thumbnail"
               />
             )}

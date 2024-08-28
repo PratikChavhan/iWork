@@ -4,6 +4,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     isLoggedIn: false,
+    fullName: "",
     userName: "",
     userId: 0,
     roles: "",
@@ -13,12 +14,15 @@ const authSlice = createSlice({
     login(state, action) {
       state.userId = action.payload.userId;
       state.isLoggedIn = true;
+      state.fullName = action.payload.fullName;
       state.userName = action.payload.email;
       state.userImage = action.payload.image;
       state.roles = action.payload.role;
-      if (localStorage.getItem("logicCredentials") === null) {
+      console.log("name:", action.payload.name);
+      if (localStorage.getItem("loginCredentials") === null) {
         persistLoginData(
           state.isLoggedIn,
+          state.fullName,
           state.userId,
           state.userName,
           state.roles,
@@ -32,22 +36,27 @@ const authSlice = createSlice({
     },
     logout(state) {
       state.isLoggedIn = false;
+      state.fullName = "";
       state.userName = "";
       state.roles = [];
       localStorage.clear();
     },
+    updateUserImage(state, action) {
+      state.userImage = action.payload;
+    },
   },
 });
 
-function persistLoginData(isLoggedIn, userId, userName, roles, image) {
+function persistLoginData(isLoggedIn, userId, fullName, userName, roles, image) {
   const dataToPersist = {
     userId: userId,
     isLoggedIn: isLoggedIn,
+    fullName: fullName,
     userName: userName,
     roles: roles,
     userImage: image,
   };
-  localStorage.setItem("logicCredentials", JSON.stringify(dataToPersist));
+  localStorage.setItem("loginCredentials", JSON.stringify(dataToPersist));
 }
 export const authActions = authSlice.actions;
 export default authSlice;

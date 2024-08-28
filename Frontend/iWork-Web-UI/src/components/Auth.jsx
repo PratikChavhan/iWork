@@ -1,47 +1,46 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import backgroundwide from "../assests/logo-login.png";
-import logonobg from "../assests/logo-bg1.png";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth-slice";
-import { useState } from "react";
 import axios from "axios";
 import baseUrl from "../util";
+import logonobg from "../assests/logo-bg1.png";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
-  const customTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#000000", // black color
-      },
-    },
-  });
-
   const dispatch = useDispatch();
-  const {
-    register,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm();
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const [errorMessage, setErrorMessage] = useState(""); // State to hold error message
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
 
-  const onSubmit = (data) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!formData.email && !formData.password) {
+      setErrorMessage("Both email and password are required!");
+      return;
+    }
+
+    if (!formData.email) {
+      setErrorMessage("Email is required!");
+      return;
+    }
+    if (!formData.password) {
+      setErrorMessage("Password is required!");
+      return;
+    }
+
     axios({
       method: "post",
       url: baseUrl + `users/login`,
       headers: {},
-      data: { email: data.email, password: data.password },
+      data: { email: formData.email, password: formData.password },
     })
       .then((response) => {
         const data = response.data;
@@ -50,11 +49,12 @@ const LoginForm = () => {
       .then((respData) => {
         console.log(respData);
 
-        if (respData.userModel.email === data.email) {
+        if (respData.userModel.email === formData.email) {
           var roles = respData.userModel.roles[0];
           dispatch(
             authActions.login({
               userId: respData.userModel.id,
+              fullName: respData.userModel.name,
               email: respData.userModel.email,
               image: respData.userModel.image,
               role: roles,
@@ -65,114 +65,132 @@ const LoginForm = () => {
       })
       .catch((error) => {
         console.log(error);
-        if (error.response && error.response.status === 404) {
-          setErrorMessage("Please enter valid credentials.");
+        if (
+          error.response &&
+          error.response.status === 404 &&
+          formData.email &&
+          formData.password
+        ) {
+          setErrorMessage("Please enter valid credentials!");
         }
       });
   };
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <Box
-        sx={{
-          //backgroundColor: "rgba(0, 0, 0, 0.5)",
-          backgroundImage: `url(${backgroundwide})`,
-          backgroundColor: "rgba(0, 0, 0, 0.5)", // Set background image
-          backgroundSize: "cover",
-          minHeight: "100vh", // Adjusted minHeight to fill entire viewport
-          maxHeight: "100%",
+    <div className="bg">
+      <div
+        className="row"
+        style={{
           display: "flex",
-          padding: "30",
-          opacity: "10px",
           justifyContent: "center",
           alignItems: "center",
-          width: "100%",
-          overflowY: "auto", // Allow vertical scrolling
+          padding: "150px 20px",
+          marginRight: "12px",
         }}
       >
-        <div>
+        <div
+          className="col-lg-6 col-md-6"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
           <img
             src={logonobg}
+            draggable="false"
             style={{
-              marginLeft: "100px",
-              marginRight: "-200px",
-              marginTop: "-100px",
+              width: "80%",
             }}
             alt="iWork"
           ></img>
         </div>
-        <CssBaseline />
-        <Container component="main" maxWidth="xs">
-          <Box
-            sx={{
-              backgroundColor: "rgba(255, 255, 255, 0.9)", // Semi-transparent white background
-              borderRadius: "20px", // Rounded corners
-              padding: "20px",
-              opacity: "100%",
-              boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.5)", // Shadow effect
-              textAlign: "center", // Centered content
-              marginTop: "100px",
-              marginBottom: 20,
-              height: "450px",
-              width: "450px",
+        <div
+          className="col-lg-4 col-md-6 p-3"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <div
+            className="card"
+            style={{
+              backgroundColor: "#ffffff20",
+              borderRadius: "20px",
+              padding: "40px 20px",
+              boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.5)",
+              textAlign: "center",
+              margin: "20px 5px",
+              width: "100%",
             }}
           >
-            <Avatar sx={{ m: "auto", bgcolor: "#424dbd" }}></Avatar>
-            <Typography
-              component="h1"
-              variant="h5"
-              sx={{ marginBottom: "20px" }}
-            >
-              Sign in
-            </Typography>
-            <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
-              <TextField
-                {...register("email", { required: true })}
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                {...register("password", { required: true })}
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+            <div className="card-body">
+              <svg
+                class="svg-icon"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  verticalAlign: "middle",
+                  fill: "currentColor",
+                  overflow: "hidden",
+                }}
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Sign In
-              </Button>
-              <Grid container justifyContent="flex-end">
-                <Grid item>
-                  <Link href="/signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                <path
+                  d="M512 170.666667a341.333333 341.333333 0 1 1 0 682.666666 341.333333 341.333333 0 0 1 0-682.666666z m42.666667 362.666666h-85.333334a128 128 0 0 0-128 128h341.333334l-0.213334-7.509333A128 128 0 0 0 554.666667 533.333333z m-42.666667-213.333333a85.333333 85.333333 0 1 0 0 170.666667 85.333333 85.333333 0 0 0 0-170.666667z"
+                  fill="#424dbd"
+                />
+              </svg>
+              <h5 className="card-title mb-4">Sign in</h5>
+              <form onSubmit={handleSubmit} noValidate autocomplete="on">
+                <div className="mb-3">
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={handleChange}
+                    autoFocus
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-primary w-100 mt-3 mb-2"
+                >
+                  Sign In
+                </button>
+                <div className="d-flex justify-content-end">
+                  <Link
+                    to="/signup"
+                    style={{
+                      textDecoration: "none",
+                      color: "#0d6efd",
+                    }}
+                  >
+                    Don't have an account? Sign Up
                   </Link>
-                </Grid>
-              </Grid>
-            </Box>
-            {errorMessage && (
-              <Box sx={{ mt: 2 }}>
-                <Typography color="error">{errorMessage}</Typography>
-              </Box>
-            )}
-          </Box>
-        </Container>
-      </Box>
-    </ThemeProvider>
+                </div>
+              </form>
+              {errorMessage && (
+                <div className="mt-3">
+                  <p className="text-danger">{errorMessage}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

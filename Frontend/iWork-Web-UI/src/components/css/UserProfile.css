@@ -1,0 +1,21 @@
+body {
+  background-image: url("../../assests/user-profile-bg.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.img-account-profile {
+  height: 10rem;
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+.card {
+  box-shadow: 0 0 10px #00000040;
+}
+
+.card .card-header {
+  font-weight: bold;
+}

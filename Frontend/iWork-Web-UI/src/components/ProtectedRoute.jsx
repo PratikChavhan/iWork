@@ -2,9 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./Auth";
 import { Route, Routes } from "react-router-dom";
-import Home from "./Home";
 import { authActions } from "../store/auth-slice";
-import SignUpForm from "../SignUp";
+import SignUpForm from "../SignUpForm";
 import AddUser from "../AdminControllers/AddUser";
 import Error from "../Error";
 import RecruiterLandingPage from "../RecruiterController/RecruiterLandingPage";
@@ -14,8 +13,7 @@ import AdminLandingPage from "../AdminControllers/AdminLandingPage";
 import PostTable from "../RecruiterController/PostTable";
 import EditPostForm from "../RecruiterController/EditPost";
 import FreelancerLandingPage from "../FreelancerController/FreelancerLandingPage";
-import Footer from "./Footer"; // Import Footer component
-import Contact from "./Contact";
+import ContactUs from "./ContactUs";
 import AboutPage from "./About";
 import LandingPage from "./LandingPage";
 
@@ -23,15 +21,16 @@ const ProtectedRoute = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  if (!isLoggedIn && localStorage.getItem("logicCredentials")) {
+  if (!isLoggedIn && localStorage.getItem("loginCredentials")) {
     console.log("Without redux but with local storage");
 
-    var data = JSON.parse(localStorage.getItem("logicCredentials"));
+    var data = JSON.parse(localStorage.getItem("loginCredentials"));
     var arrOfRoles = data.roles;
 
     dispatch(
       authActions.login({
         email: data.userName,
+        name: data.fullname,
         role: arrOfRoles,
         userId: data.userId,
         image: data.userImage,
@@ -40,15 +39,13 @@ const ProtectedRoute = () => {
   }
   const roles = useSelector((state) => state.auth.roles);
 
-  console.log(roles);
-
   const routesForUnAuthUser = (
     <>
       <Route path="/" element={<LandingPage />} />
       <Route path="/signup" element={<SignUpForm />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/login" element={<LoginForm />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/contact" element={<ContactUs />} />
       <Route
         path="*"
         element={<Error message={"Invalid path please check the url"} />}
@@ -58,14 +55,15 @@ const ProtectedRoute = () => {
 
   const routesForRecruiter = (
     <>
-      <Route path="/login" element={<RecruiterLandingPage />}></Route>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/signup" element={<SignUpForm />} />
+      <Route path="/login" element={<RecruiterLandingPage />} />
       <Route path="/add-work" element={<PostForm />} />
       <Route path="/edit-post/:postId" element={<EditPostForm />} />
       <Route path="/my-posts" element={<PostTable />} />
       <Route path="/profile" element={<UserProfile />} />
       <Route path="/about" element={<AboutPage />} />
-      <Route path="/products" element={<Home />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/contact" element={<ContactUs />} />
       <Route
         path="*"
         element={<Error message={"Invalid path please check the url"} />}
@@ -74,12 +72,13 @@ const ProtectedRoute = () => {
   );
   const routesForFreelancer = (
     <>
-      <Route path="/login" element={<FreelancerLandingPage />}></Route>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/signup" element={<SignUpForm />} />
+      <Route path="/login" element={<FreelancerLandingPage />} />
       <Route path="/profile" element={<UserProfile />} />
       <Route path="/add-portfolio" element={<AddUser />} />
       <Route path="/about" element={<AboutPage />} />
-      <Route path="/products" element={<Home />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/contact" element={<ContactUs />} />
       <Route
         path="*"
         element={<Error message={"Invalid path please check the url"} />}
@@ -89,10 +88,12 @@ const ProtectedRoute = () => {
 
   const routesForAdmin = (
     <>
-      <Route path="/login" element={<AdminLandingPage />}></Route>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/signup" element={<SignUpForm />} />
+      <Route path="/login" element={<AdminLandingPage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/profile" element={<UserProfile />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/contact" element={<ContactUs />} />
       <Route
         path="*"
         element={<Error message={"Invalid path please check the url"} />}
@@ -105,7 +106,7 @@ const ProtectedRoute = () => {
       return routesForUnAuthUser;
     }
 
-    console.log(roles);
+    // console.log(roles);
     switch (roles) {
       case "RECRUITER":
         return routesForRecruiter;
@@ -121,7 +122,6 @@ const ProtectedRoute = () => {
   return (
     <div>
       <Routes>{findRoute()}</Routes>
-      <Footer /> {/* Include Footer component outside of Routes */}
     </div>
   );
 };

@@ -1,0 +1,23 @@
+.bg {
+  background-image: url('./assests/background.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.invalid {
+  color: red;
+  font-size: 12px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.center-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-border {
+  border-bottom: 2px solid #00000080;
+  border-right: 1px solid #00000080;
+}

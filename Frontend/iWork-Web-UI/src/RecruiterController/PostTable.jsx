@@ -17,7 +17,7 @@ function PostTable() {
       item
     );
 
-    if (response.status == 200) {
+    if (response.status === 200) {
       navigate("/my-posts");
     }
   }
@@ -28,7 +28,7 @@ function PostTable() {
       `http://localhost:9091/freelancing/api/deleteById/${item.id}`
     );
 
-    if (response.status == 200) {
+    if (response.status === 200) {
       setData((prevData) => prevData.filter((post) => post.id !== item.id));
     }
   }
@@ -57,7 +57,9 @@ function PostTable() {
 
   return (
     <Container style={{ marginTop: "10px", padding: "10px" }}>
-      <h1><b>Posts</b></h1>
+      <h1>
+        <b>Posts</b>
+      </h1>
       <br />
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand style={{}}></Navbar.Brand>
@@ -99,7 +101,7 @@ function PostTable() {
                     style={{
                       maxHeight: "100%",
                       gap: "20px",
-                      height: 'auto',
+                      height: "auto",
                       textAlign: "center",
                       display: "flex",
                       flexDirection: "column",
@@ -107,7 +109,7 @@ function PostTable() {
                       flexWrap: "wrap",
                       justifyContent: "space-between",
                       alignItems: "stretch",
-                      background: 'white'
+                      background: "white",
                     }}
                   >
                     <Link

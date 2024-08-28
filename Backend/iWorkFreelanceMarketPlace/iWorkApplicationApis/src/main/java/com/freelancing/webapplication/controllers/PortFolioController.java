@@ -23,7 +23,12 @@ public class PortFolioController {
 
 		return new ResponseEntity<List<PortfolioDto>>(
 				this.portfolioServices.getAllPortfolio(), HttpStatus.OK);
-
+	}
+	
+	@GetMapping("/getPortfolioByUserId/{userId}")
+	public ResponseEntity<List<PortfolioDto>> getAllPortfolioByUserId(@PathVariable Integer userId) {
+		List<PortfolioDto> allPortfolio = this.portfolioServices.getAllPortfolioByUserId(userId);
+		return new ResponseEntity<List<PortfolioDto>>(allPortfolio, HttpStatus.OK);
 	}
 
 	@GetMapping("/getPortfolioByID/{portfolioId}")

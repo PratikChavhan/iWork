@@ -83,7 +83,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 	
 	@Override
 	public List<PortfolioDto> getAllPortfolioByUserId(Integer UserId) {
-		List<Portfolio> allPortfolio = this.portfolioRepo.findAll();
+		List<Portfolio> allPortfolio = this.portfolioRepo.findByUser_id(UserId);
 		List<PortfolioDto> allPortfolioDTO = allPortfolio.stream()
 				.map(portfolio -> this.modelMapper.map(portfolio, PortfolioDto.class)).collect(Collectors.toList());
 		return allPortfolioDTO;
